@@ -24,3 +24,10 @@ class Post(models.Model):
         return f'{self.titulo} - {self.slug}'
 
 # Create your models here.
+'''
+Post.objects.bulk_create([
+    Post(titulo='testando o shell do Django- com bulk 2', slug='testando-o-shell-do-django-22',conteudo='Testando o Shell do Django', autor=user),
+    Post(titulo='testando o shell do Django- com bulk 3', slug='testando-o-shell-do-django-222',conteudo='Testando o Shell do Django', autor=user),
+    Post(titulo='testando o shell do Django- com bulk 44', slug='testando-o-shell-do-django-2244',conteudo='Testando o Shell do Django', autor=user),
+])
+'''

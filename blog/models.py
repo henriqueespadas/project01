@@ -1,6 +1,12 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
+
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super(PublishedManager, self).get_queryset()\
+                                            .filter(status='publicado')
 
 class Post(models.Model):
     STATUS = {
@@ -16,6 +22,12 @@ class Post(models.Model):
     criado = models.DateTimeField(auto_now_add=True)
     alterado = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS, default='Rascunho')
+    objects = models.Manager()
+    published = PublishedManager()
+
+    def get_absolute_url(self):
+        # return reverse('post_detail', args=[self.pk])
+        return reverse('post_detail', args=[self.slug])
 
     class Meta:
         ordering = ('-publicado',)
@@ -24,10 +36,3 @@ class Post(models.Model):
         return f'{self.titulo} - {self.slug}'
 
 # Create your models here.
-'''
-Post.objects.bulk_create([
-    Post(titulo='testando o shell do Django- com bulk 2', slug='testando-o-shell-do-django-22',conteudo='Testando o Shell do Django', autor=user),
-    Post(titulo='testando o shell do Django- com bulk 3', slug='testando-o-shell-do-django-222',conteudo='Testando o Shell do Django', autor=user),
-    Post(titulo='testando o shell do Django- com bulk 44', slug='testando-o-shell-do-django-2244',conteudo='Testando o Shell do Django', autor=user),
-])
-'''

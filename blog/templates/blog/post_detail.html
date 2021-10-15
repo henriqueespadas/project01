@@ -5,6 +5,7 @@
         <h2><a {{ object.titulo }}></a></h2>
         <p>{{ object.conteudo }}</p>
     </div>
-    <a href="{{ object.get_absolute_url_update }}">+ Editar Postagem do blog</a>
+    <a href="{{ object.get_absolute_url_update }}">+ Editar Postagem do blog</a><br>
+    <a href="{% url 'post_delete' object.pk %}">+ Deletar Postagem do blog</a>
 {% endblock content %}
 

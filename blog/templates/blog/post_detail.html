@@ -2,8 +2,9 @@
 {% block title %} Blog-Detalhe {% endblock title %}
 {% block content %}
     <div class="post-entry">
-        <h2><a {{ custom.titulo }}></a></h2>
-        <p>{{ custom.conteudo }}</p>
+        <h2><a {{ object.titulo }}></a></h2>
+        <p>{{ object.conteudo }}</p>
     </div>
+    <a href="{{ object.get_absolute_url_update }}">+ Editar Postagem do blog</a>
 {% endblock content %}
 
